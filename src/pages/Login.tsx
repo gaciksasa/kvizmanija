@@ -155,14 +155,14 @@ export const Login: React.FC = () => {
             onClick={handleGoogleLogin}
             className="w-full btn border-2 border-gray-600 hover:bg-gray-700 flex items-center justify-center gap-2"
           >
-            🔗 Prijavi se sa Google
+            🔗 Nastavi sa Google
           </button>
 
           <button
             onClick={handleFacebookLogin}
             className="w-full btn border-2 border-gray-600 hover:bg-gray-700 flex items-center justify-center gap-2"
           >
-            📘 Prijavi se sa Facebook
+            📘 Nastavi sa Facebook
           </button>
         </div>
 
