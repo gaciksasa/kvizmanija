@@ -1,118 +1,118 @@
-# 🎯 Pub Quiz Srbija
+# Kviz Manija
 
-Interaktivna **mobile-first** aplikacija za pub quiz sa pitanjima relevantnim za Srbiju. Testira se znanje kroz zabavne i edukativne pitanja, korisnike se rangiraju na leaderboard-u, a sva pitanja se centralno upravljaju kroz admin panel.
+Kviz aplikacija sa sistemom bodovanja po tezini pitanja, odbrojavanjem vremena i rang listom.
 
-## ✨ Glavne Karakteristike
+## Kako radi
 
-| Karakteristika | Opis |
-|---|---|
-| 📱 **Mobile First** | Optimizovana za sve uređaje |
-| 🎮 **Interactive Quiz** | 10 pitanja sa vremenom od 30 sekundi po pitanju |
-| 👥 **Auth** | Email, Google, Facebook prijave/registracije |
-| 🏆 **Leaderboard** | Real-time rang lista sa top igračima |
-| ⚙️ **Admin Panel** | Upravljanje pitanjima (dodaj, izmeni, obriši) |
-| 🌍 **Vercel Ready** | Deployovano sa Vercel + Supabase |
-| 🎨 **Tailwind CSS** | Moderan UI sa Tailwind utility classes |
+Igrac dobija 30 pitanja (5 lakih, 10 srednjih, 15 teskih) i ima 90 sekundi da odgovori na sto vise pitanja. Kviz se zavrsava kada istekne vreme ili kada se odgovori na sva pitanja.
 
-## 🛠️ Stack
+### Bodovanje
 
-Frontend: React 19.2 + TypeScript, Vite, React Router, Tailwind CSS, Zustand, Supabase JS
-Backend: Supabase (PostgreSQL), Supabase Auth
-Deployment: Vercel (frontend), Supabase (database)
+| Tezina | Broj pitanja | Poeni po tacnom |
+|--------|-------------|-----------------|
+| Lako   | 5           | 250             |
+| Srednje| 10          | 350             |
+| Tesko  | 15          | 500             |
 
-## 🚀 Quick Start
+Ako igrac odgovori na svih 30 pitanja pre isteka vremena, dobija bonus od **50 poena po preostaloj sekundi**.
 
-### 1. Instaliraj Dependencije
+Maksimalan moguci rezultat: 1250 + 3500 + 7500 + bonus = **12250 + bonus**
+
+### Kategorije
+
+Istorija, Geografija, Nauka, Sport, Muzika, Film, Umetnost, Tehnologija — ili mesavina svih.
+
+## Tech stack
+
+- **Frontend:** React 19, TypeScript, Vite, Tailwind CSS
+- **State:** Zustand
+- **Backend:** Supabase (PostgreSQL, Auth, RLS)
+- **Auth:** Email, Google, Facebook (OAuth)
+- **Deploy:** Vercel
+
+## Pokretanje
 
 ```bash
 npm install
-```
-
-### 2. Konfiguracija Supabase
-
-**2.1. Kreiraj Supabase Projekat**
-
-1. Idi na https://supabase.com
-2. Klikni "New project"
-3. Ispuni: Naziv, Password, Region: Europe
-4. Čekaj ~2-3 minuta
-
-**2.2. Setup SQL Tabela**
-
-1. Idi u **SQL Editor → New query**
-2. Kopiraj i pokreni SQL iz .env.example fajla
-
-**2.3. Setup OAuth (Google/Facebook)**
-
-1. Idi u **Authentication → Providers**
-2. Za Google: Kreiraj OAuth app na Google Cloud Console
-3. Za Facebook: Kreiraj app na Facebook Developers
-4. Kopiraj ID i Secret u Supabase
-
-**2.4. Env Variables**
-
-1. Idi u **Project Settings → API**
-2. Kreiraj `.env.local` u projektu:
-
-```env
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key
-```
-
-### 3. Pokreni Aplikaciju
-
-```bash
+cp .env.example .env.local
+# Popuni VITE_SUPABASE_URL i VITE_SUPABASE_ANON_KEY
 npm run dev
 ```
 
-Otvori http://localhost:5173 🎉
+Aplikacija: http://localhost:5173
 
-## 📁 Struktura Projekta
+## Supabase setup
+
+1. Kreiraj projekat na [supabase.com](https://supabase.com)
+2. U SQL Editor-u pokreni sledece tabele:
+
+```sql
+CREATE TABLE users (
+  id UUID PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE,
+  name TEXT NOT NULL,
+  avatar_url TEXT,
+  auth_provider TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE questions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  category TEXT NOT NULL,
+  difficulty TEXT NOT NULL,
+  text TEXT NOT NULL,
+  options TEXT[] NOT NULL,
+  correct_answer TEXT NOT NULL,
+  description TEXT,
+  created_by UUID NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP
+);
+
+CREATE TABLE quiz_games (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL,
+  category TEXT,
+  score INTEGER NOT NULL,
+  total_questions INTEGER NOT NULL,
+  accuracy FLOAT NOT NULL,
+  time_taken INTEGER,
+  answers JSONB,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+3. U Authentication > Providers ukljuci Google i/ili Facebook OAuth
+4. Kopiraj Project URL i Anon Key iz Project Settings > API u `.env.local`
+
+## Struktura
 
 ```
 src/
-├── components/          # Reusable komponente
-├── pages/              # Full page komponente
-├── services/           # Supabase client
-├── store/              # Zustand stores
-├── types/              # TypeScript tipovi
-├── utils/              # Helpers
-├── index.css           # Tailwind CSS
-├── App.tsx             # Main app sa rutama
-└── main.tsx            # Entry point
+├── assets/        Slike, zvukovi
+├── components/    QuestionCard, Button, Input, Header, Footer
+├── pages/         Home, Login, Register, Quiz, Results, Leaderboard, Admin
+├── services/      Supabase klijent
+├── store/         Zustand (auth, quiz, leaderboard)
+├── types/         TypeScript tipovi i konstante
+└── utils/         Zvukovi (correct, wrong, clock, finish, start)
 ```
 
-## 🎮 Korišćenje
+## Admin panel
 
-**Korisnik:**
-1. Registruj se (email ili Google/Facebook)
-2. Klikni "Kreni sa igrom"
-3. Odgovori na 10 pitanja (30 sekundi po pitanju)
-4. Pogledaj rezultate i leaderboard
+Dostupan samo za admin email. Omogucava dodavanje, izmenu i brisanje pitanja kroz modal formu. Tabela pitanja je sortabilna i filtrirajuca po kategoriji, tezini i tekstu.
 
-**Administrator:**
-1. Prijavi se sa email računom
-2. Idi u Admin panel
-3. Dodaj/izmeni/obriši pitanja
-
-## 📦 Deployment na Vercel
+## Deploy na Vercel
 
 ```bash
 npm run build
-npm install -g vercel
-vercel
+npx vercel --prod
 ```
 
-Dodaj env variables u Vercel settings i `vercel --prod`
+Environment varijable (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`) dodati u Vercel > Settings > Environment Variables.
 
-## 📚 Resursi
+U Supabase > Authentication > URL Configuration dodati Vercel URL kao dozvoljen redirect.
 
-- [Supabase Docs](https://supabase.com/docs)
-- [React Router](https://reactrouter.com)
-- [Tailwind CSS](https://tailwindcss.com)
-- [Zustand](https://github.com/pmndrs/zustand)
+## Licenca
 
-## 📝 License
-
-MIT License
-```
+MIT
