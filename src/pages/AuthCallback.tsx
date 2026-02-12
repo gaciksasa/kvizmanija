@@ -8,7 +8,7 @@ export const AuthCallback: React.FC = () => {
     // Supabase OAuth callback će automatski pozvati checkAuth
     // Redirekcija nakon što je auth završen
     const timer = setTimeout(() => {
-      navigate('/quiz');
+      navigate('/');
     }, 2000);
 
     return () => clearTimeout(timer);
