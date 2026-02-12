@@ -58,9 +58,9 @@ export const Quiz: React.FC = () => {
           const unique = [...new Map(data.map((q) => [q.text, q])).values()];
 
           // Split by difficulty
-          const easy = shuffle(unique.filter((q) => q.difficulty === 'easy')).slice(0, 10);
+          const easy = shuffle(unique.filter((q) => q.difficulty === 'easy')).slice(0, 5);
           const medium = shuffle(unique.filter((q) => q.difficulty === 'medium')).slice(0, 10);
-          const hard = shuffle(unique.filter((q) => q.difficulty === 'hard')).slice(0, 10);
+          const hard = shuffle(unique.filter((q) => q.difficulty === 'hard')).slice(0, 15);
 
           // Order: easy first, then medium, then hard
           const selected = [...easy, ...medium, ...hard] as Question[];
