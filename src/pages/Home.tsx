@@ -47,6 +47,11 @@ export const Home: React.FC = () => {
               Pravila igre
             </Link>
           </div>
+          <div className="flex justify-center gap-4 mt-6 text-xs text-gray-500">
+            <Link to="/privacy" className="hover:text-gray-300 transition-colors">Politika privatnosti</Link>
+            <span>|</span>
+            <Link to="/terms" className="hover:text-gray-300 transition-colors">Uslovi korišćenja</Link>
+          </div>
         </div>
       </div>
     );
@@ -92,6 +97,12 @@ export const Home: React.FC = () => {
           >
             <img src={pravila} alt="Pravila" className="h-[60px] mx-auto" />
           </button>
+        </div>
+
+        <div className="flex justify-center gap-4 mt-6 text-xs text-gray-500">
+          <Link to="/privacy" className="hover:text-gray-300 transition-colors">Politika privatnosti</Link>
+          <span>|</span>
+          <Link to="/terms" className="hover:text-gray-300 transition-colors">Uslovi korišćenja</Link>
         </div>
       </div>
     </div>
