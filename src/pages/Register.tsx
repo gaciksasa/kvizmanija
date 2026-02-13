@@ -163,12 +163,6 @@ export const Register: React.FC = () => {
             🔗 Nastavi sa Google
           </button>
 
-          <button
-            onClick={handleFacebookSignUp}
-            className="w-full btn border-2 border-gray-600 hover:bg-gray-700 flex items-center justify-center gap-2"
-          >
-            📘 Nastavi sa Facebook
-          </button>
         </div>
 
         <p className="text-center text-gray-400 mt-6">
