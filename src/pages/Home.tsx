@@ -67,7 +67,7 @@ export const Home: React.FC = () => {
               className="rounded-xl overflow-hidden hover:scale-105 transition-all cursor-pointer active:scale-95 shadow-[0_0_4px_rgba(255,255,255,0.1)] hover:shadow-[0_0_8px_rgba(255,255,255,0.2)]"
             >
               <div
-                className="w-full aspect-square bg-no-repeat"
+                className="w-full aspect-[1/0.9] bg-no-repeat"
                 style={{
                   backgroundImage: `url(${sprite})`,
                   backgroundSize: '300% 300%',
