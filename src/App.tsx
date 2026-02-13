@@ -14,6 +14,8 @@ import { Leaderboard } from './pages/Leaderboard';
 import { Admin } from './pages/Admin';
 import { AuthCallback } from './pages/AuthCallback';
 import { Rules } from './pages/Rules';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { TermsOfService } from './pages/TermsOfService';
 
 function App() {
   const { checkAuth, loading } = useAuthStore();
@@ -45,6 +47,8 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/rules" element={<Rules />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfService />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

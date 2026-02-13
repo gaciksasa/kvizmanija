@@ -155,6 +155,12 @@ export const Login: React.FC = () => {
             Registruj se
           </a>
         </p>
+
+        <div className="flex justify-center gap-4 mt-4 text-xs text-gray-500">
+          <a href="/privacy" className="hover:text-gray-300 transition-colors">Politika privatnosti</a>
+          <span>|</span>
+          <a href="/terms" className="hover:text-gray-300 transition-colors">Uslovi korišćenja</a>
+        </div>
       </div>
     </div>
   );
