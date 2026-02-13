@@ -89,19 +89,6 @@ export const Login: React.FC = () => {
     }
   };
 
-  const handleFacebookLogin = async () => {
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'facebook',
-        options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
-        },
-      });
-      if (error) setError(error.message);
-    } catch (err) {
-      setError('Greška pri Facebook prijavi');
-    }
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8">
