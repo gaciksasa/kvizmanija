@@ -4,6 +4,8 @@ import { useAuthStore } from '../store/authStore';
 import { supabase } from '../services/supabase';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
+import iconGoogle from '../assets/icon-google.png';
+import logo from '../assets/logo.png';
 
 export const Register: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -100,7 +102,7 @@ export const Register: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8">
       <div className="card max-w-lg w-full">
-        <h1 className="text-3xl font-bold mb-6 text-center">Registracija 📝</h1>
+        <img src={logo} alt="Kviz Manija" className="w-64 mx-auto mb-6 cursor-pointer" onClick={() => navigate('/')} />
 
         {error && (
           <div className="bg-red-900/50 border border-red-700 text-red-300 px-4 py-3 rounded-lg mb-4">
@@ -160,7 +162,7 @@ export const Register: React.FC = () => {
             onClick={handleGoogleSignUp}
             className="w-full btn border-2 border-gray-600 hover:bg-gray-700 flex items-center justify-center gap-2"
           >
-            🔗 Nastavi sa Google
+            <img src={iconGoogle} alt="Google" className="h-5 w-5" /> Nastavi sa Google
           </button>
 
         </div>
