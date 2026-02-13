@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { Link, useNavigate } from 'react-router-dom';
 import { isMuted, toggleMute } from '../utils/sounds';
+import soundOn from '../assets/sound-on.png';
+import soundOff from '../assets/sound-off.png';
+import logoutIcon from '../assets/logout.png';
 
 export const Header: React.FC = () => {
   const { user, logout } = useAuthStore();
@@ -36,33 +39,17 @@ export const Header: React.FC = () => {
       )}
       <button
         onClick={handleToggleMute}
-        className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800/70 text-white hover:bg-gray-800/90 transition shadow-lg"
+        className="hover:scale-110 transition-all cursor-pointer active:scale-95"
         title={muted ? 'Uključi zvuk' : 'Isključi zvuk'}
       >
-        {muted ? (
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M11 5L6 9H2v6h4l5 4V5z" />
-            <line x1="23" y1="9" x2="17" y2="15" />
-            <line x1="17" y1="9" x2="23" y2="15" />
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-          </svg>
-        )}
+        <img src={muted ? soundOff : soundOn} alt={muted ? 'Zvuk isključen' : 'Zvuk uključen'} className="h-[36px]" />
       </button>
       <button
         onClick={handleLogout}
-        className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-800/70 text-white hover:bg-gray-800/90 transition shadow-lg"
+        className="hover:scale-110 transition-all cursor-pointer active:scale-95"
         title="Odjavi se"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-          <polyline points="16 17 21 12 16 7" />
-          <line x1="21" y1="12" x2="9" y2="12" />
-        </svg>
+        <img src={logoutIcon} alt="Odjavi se" className="h-[36px]" />
       </button>
     </div>
   );

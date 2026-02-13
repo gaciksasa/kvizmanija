@@ -4,6 +4,7 @@ import { useAuthStore } from '../store/authStore';
 import { useLeaderboardStore } from '../store/leaderboardStore';
 import { CATEGORIES } from '../types';
 import again from '../assets/again.png';
+import pravila from '../assets/pravila.png';
 import logo from '../assets/logo.png';
 
 export const Leaderboard: React.FC = () => {
@@ -86,7 +87,6 @@ export const Leaderboard: React.FC = () => {
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-sm truncate">
                     {entry.users?.name || 'Nepoznat'}
-                    {entry.user_id === user.id && <span className="text-primary"> (Ti)</span>}
                   </p>
                   <p className="text-xs text-gray-400">
                     {entry.accuracy.toFixed(0)}% · {formatTime(entry.time_taken)}
@@ -98,12 +98,21 @@ export const Leaderboard: React.FC = () => {
           </div>
         )}
 
-        <button
-          onClick={() => navigate('/')}
-          className="w-full mt-6 hover:scale-105 transition-all cursor-pointer active:scale-95"
-        >
-          <img src={again} alt="Igraj opet" className="w-full mx-auto" />
-        </button>
+        <div className="grid grid-cols-2 gap-3 mt-6">
+          <button
+            onClick={() => navigate('/')}
+            className="hover:scale-105 transition-all cursor-pointer active:scale-95"
+          >
+            <img src={again} alt="Igraj opet" className="h-[60px] mx-auto" />
+          </button>
+
+          <button
+            onClick={() => navigate('/rules')}
+            className="hover:scale-105 transition-all cursor-pointer active:scale-95"
+          >
+            <img src={pravila} alt="Pravila" className="h-[60px] mx-auto" />
+          </button>
+        </div>
       </div>
     </div>
   );

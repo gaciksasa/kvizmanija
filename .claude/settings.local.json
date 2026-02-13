@@ -15,7 +15,16 @@
       "Bash(git -C c:/wamp64/www/pub-quiz push -u origin main)",
       "Bash(curl:*)",
       "Bash(python -c:*)",
-      "Bash(python -m json.tool:*)"
+      "Bash(python -m json.tool:*)",
+      "Bash(nslookup:*)",
+      "Bash(npm install:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(git -C c:/wamp64/www/pub-quiz stash push -m \"MySQL/Vercel API migration \\(backup\\)\" -- api/ src/services/api.ts src/services/supabase.ts src/store/authStore.ts src/store/leaderboardStore.ts src/pages/Login.tsx src/pages/Register.tsx src/pages/AuthCallback.tsx src/pages/Quiz.tsx src/pages/Results.tsx src/pages/Admin.tsx vercel.json .env.example package.json package-lock.json)",
+      "Bash(git -C c:/wamp64/www/pub-quiz checkout -b mysql-migration)",
+      "Bash(git -C c:/wamp64/www/pub-quiz add api/ src/services/api.ts src/store/authStore.ts src/store/leaderboardStore.ts src/pages/Login.tsx src/pages/Register.tsx src/pages/AuthCallback.tsx src/pages/Quiz.tsx src/pages/Results.tsx src/pages/Admin.tsx vercel.json .env.example package.json package-lock.json)",
+      "Bash(git -C c:/wamp64/www/pub-quiz rm src/services/supabase.ts)",
+      "Bash(git -C c:/wamp64/www/pub-quiz commit -m \"$\\(cat <<''EOF''\nWIP: MySQL + Vercel API routes migration \\(replacing Supabase\\)\n\nBackend: Vercel serverless functions in /api/\nDatabase: MySQL on Loopia \\(replacing Supabase PostgreSQL\\)\nAuth: JWT + bcrypt + Google/Facebook OAuth direct\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C c:/wamp64/www/pub-quiz checkout main)"
     ]
   }
 }

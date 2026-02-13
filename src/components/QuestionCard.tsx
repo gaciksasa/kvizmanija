@@ -49,9 +49,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         {shuffledOptions.map((option, index) => (
           <button
             key={index}
-            onClick={() => handleSelectOption(option)}
+            onClick={(e) => { (e.currentTarget as HTMLButtonElement).blur(); handleSelectOption(option); }}
             disabled={!!selectedAnswer}
-            className={`w-full p-4 text-left rounded-lg border-2 transition-all ${
+            className={`w-full p-4 text-left rounded-lg border-2 transition-all focus:outline-none ${
               selectedAnswer === option
                 ? 'border-primary bg-primary/20'
                 : selectedAnswer

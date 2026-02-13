@@ -161,8 +161,8 @@ export const Quiz: React.FC = () => {
   const currentAnswer = answers.find((a) => a.question_id === currentQuestion.id);
 
   return (
-    <div className="min-h-screen py-4 px-4">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen pt-14 pb-4 px-4">
+      <div className="max-w-lg mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-4 px-2">
           <span className="text-sm font-semibold text-gray-400">

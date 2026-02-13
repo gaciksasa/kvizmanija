@@ -13,6 +13,7 @@ import { Results } from './pages/Results';
 import { Leaderboard } from './pages/Leaderboard';
 import { Admin } from './pages/Admin';
 import { AuthCallback } from './pages/AuthCallback';
+import { Rules } from './pages/Rules';
 
 function App() {
   const { checkAuth, loading } = useAuthStore();
@@ -43,6 +44,7 @@ function App() {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
+        <Route path="/rules" element={<Rules />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

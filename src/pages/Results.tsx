@@ -75,14 +75,14 @@ export const Results: React.FC = () => {
 
   return (
     <div className="min-h-screen py-8 px-4 flex items-center justify-center">
-      <div className="card max-w-md w-full text-center">
+      <div className="card max-w-lg w-full text-center">
         <img
           src={logo}
           alt="Kviz Manija"
           className="w-64 mx-auto mb-4 cursor-pointer"
           onClick={() => { resetGame(); navigate('/'); }}
         />
-        <img src={gameover} alt="Igra završena" className="w-96 mx-auto mb-4" />
+        <img src={gameover} alt="Igra završena" className="w-64 mx-auto mb-4" />
 
         <div className="bg-gray-700/50 rounded-lg p-6 mb-6 space-y-4">
           <div>
@@ -122,22 +122,22 @@ export const Results: React.FC = () => {
           )}
         </div>
 
-        <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-3">
           <button
             onClick={() => {
               resetGame();
               navigate('/');
             }}
-            className="w-full hover:scale-105 transition-all cursor-pointer active:scale-95"
+            className="hover:scale-105 transition-all cursor-pointer active:scale-95"
           >
-            <img src={again} alt="Igraj opet" className="w-full mx-auto" />
+            <img src={again} alt="Igraj opet" className="h-[60px] mx-auto" />
           </button>
 
           <button
             onClick={() => navigate('/leaderboard')}
-            className="w-full hover:scale-105 transition-all cursor-pointer active:scale-95"
+            className="hover:scale-105 transition-all cursor-pointer active:scale-95"
           >
-            <img src={tabela} alt="Leaderboard" className="w-full mx-auto" />
+            <img src={tabela} alt="Leaderboard" className="h-[60px] mx-auto" />
           </button>
         </div>
       </div>

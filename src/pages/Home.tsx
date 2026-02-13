@@ -6,6 +6,7 @@ import { playStart, playSelected } from '../utils/sounds';
 import logo from '../assets/logo.png';
 import sprite from '../assets/sprite.jpg';
 import tabela from '../assets/tabela.png';
+import pravila from '../assets/pravila.png';
 
 const SPRITE_POSITION: Record<string, string> = {
   sve: '0% 0%',
@@ -30,8 +31,8 @@ export const Home: React.FC = () => {
   if (!user) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-4">
-        <div className="text-center max-w-sm">
-          <img src={logo} alt="Kviz Manija" className="w-96 mx-auto mb-6" />
+        <div className="text-center max-w-lg">
+          <img src={logo} alt="Kviz Manija" className="w-64 mx-auto mb-6" />
           <p className="text-gray-400 mb-8">
             Testiraj svoje znanje kroz zabavna pitanja!
           </p>
@@ -41,6 +42,9 @@ export const Home: React.FC = () => {
             </Link>
             <Link to="/login" className="block w-full btn btn-outline py-3 text-center">
               Prijavi se
+            </Link>
+            <Link to="/rules" className="block w-full btn btn-outline py-3 text-center">
+              Pravila igre
             </Link>
           </div>
         </div>
@@ -52,7 +56,7 @@ export const Home: React.FC = () => {
     <div className="min-h-screen px-4 py-6">
       <div className="max-w-lg mx-auto">
         <div className="text-center mb-6">
-          <img src={logo} alt="Kviz Manija" className="w-96 mx-auto" />
+          <img src={logo} alt="Kviz Manija" className="w-64 mx-auto" />
         </div>
 
         <div className="grid grid-cols-3 gap-3 mb-8">
@@ -74,12 +78,21 @@ export const Home: React.FC = () => {
           ))}
         </div>
 
-        <button
-          onClick={() => navigate('/leaderboard')}
-          className="w-full hover:scale-105 transition-all cursor-pointer active:scale-95"
-        >
-          <img src={tabela} alt="Leaderboard" className="w-96 mx-auto" />
-        </button>
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            onClick={() => navigate('/leaderboard')}
+            className="hover:scale-105 transition-all cursor-pointer active:scale-95"
+          >
+            <img src={tabela} alt="Leaderboard" className="h-[60px] mx-auto" />
+          </button>
+
+          <button
+            onClick={() => navigate('/rules')}
+            className="hover:scale-105 transition-all cursor-pointer active:scale-95"
+          >
+            <img src={pravila} alt="Pravila" className="h-[60px] mx-auto" />
+          </button>
+        </div>
       </div>
     </div>
   );
